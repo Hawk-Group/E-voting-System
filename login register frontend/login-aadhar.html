@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login usig addhar</title>
+    <link rel="stylesheet" href="login-aadhar.css">
+</head>
+<body>
+    <header class="header">
+        <img src="images/eci-logo.svg" alt="Company Logo">
+        <nav class="nav">
+            <a href="index.html">Home</a>
+            <a href="#about">About Us</a>
+            <a href="#manual">User Manual</a>
+        </nav>
+    </header>
+    <div class="loginimg">
+        <style>
+            .loginimg {
+              padding-top: 20px;
+              height: 100vh;
+            }
+          </style>
+        <img src="images/login-adhar.svg" alt="">
+    </div>
+    <div>
+        <form id="signupForm" style="height: fit-content;">
+          <h3>Login with Aadhar</h3>
+          <input type="text" id="aadhar" placeholder="Aadhar Number" required />
+          <input type="text" id="phone" placeholder="Phone Number" required />
+          <button type="submit">Send OTP</button>
+          <h5 style="display:flex; margin: 20px 0px 20px 40%;">-----OR----</h5>
+        <h4 style="margin-left: auto; font-size: 14px;">Want to Login using Email & password - <a href="login.html">Click Here</a></h4>
+        </form>
+        <div id="otpSection" style="display:none;">
+          <input type="text" id="otp" placeholder="Enter OTP" required />
+          <button onclick="verifyOTP()">Verify OTP</button>
+        </div>
+        <div>
+            
+        </div>
+
+</body>
+</html>

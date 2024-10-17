@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>Login</title>
+  <link rel="stylesheet" href="login.css" />
+  <script>
+    document.getElementById('signupForm').onsubmit = function (event) {
+      event.preventDefault();
+      const aadhar = document.getElementById('aadhar').value;
+      const phone = document.getElementById('phone').value;
+
+      fetch('/send-otp', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ aadhar, phone }),
+      })
+        .then((response) => response.json())
+        .then((data) => {
+          if (data.success) {
+            document.getElementById('otpSection').style.display = 'block';
+          } else {
+            alert('Failed to send OTP');
+          }
+        });
+    };
+
+    function verifyOTP() {
+      const otp = document.getElementById('otp').value;
+
+      fetch('/verify-otp', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          phone: document.getElementById('phone').value,
+          otp,
+        }),
+      })
+        .then((response) => response.json())
+        .then((data) => {
+          if (data.success) {
+            alert('Login Successful');
+          } else {
+            alert('Invalid OTP');
+          }
+        });
+    }
+  </script>
+</head>
+
+<body>
+  <header class="header">
+    <img src="images/eci-logo.svg" alt="Company Logo" />
+    <nav class="nav">
+      <a href="index.html">Home</a>
+      <a href="#about">About Us</a>
+      <a href="#manual">User Manual</a>
+    </nav>
+  </header>
+  <div class="login-both">
+    <div>
+      <form action="login.php" method="POST" style="height: fit-content; margin:30px 0 0 190px;">
+        <h3>Login Here</h3>
+        <h4>do not have account yet ? - <a href="signup.html"> Sign Up</a></h4>
+        <label for="email">Email</label>
+        <input type="email" id="email" name="email" placeholder="Email" required>
+
+        <label for="password">Password</label>
+        <input type="password" id="password" name="password" placeholder="password" required>
+
+        <button type="submit">Login</button>
+        <h5 style="display:flex; margin: 20px 0px 20px 40%;">-----OR----</h5>
+        <h4 style="margin-left: 50px;">Login using addhar - <a href="login-aadhar.html">Login</a></h4>
+      </form> </div>
+      <div class="loginimg">
+        <style>
+          .loginimg{
+            padding-top: 50px;
+            height: 100vh;
+            padding-left: 20px;
+          }
+        </style>
+        <img src="images/login-pg.svg" alt="">
+      </div>
+    </div>
+  </div>
+  </div>
+</body>
+
+</html>
